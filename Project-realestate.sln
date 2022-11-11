@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project-realestate", "Project-realestate\Project-realestate.csproj", "{FDE81773-682B-4D48-A905-7BBE0EADCD12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.BL", "RealEstate.BL\RealEstate.BL.csproj", "{4FC9398A-BFD4-46A0-8867-AA78F2556CB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.DAL", "RealEstate.DAL\RealEstate.DAL.csproj", "{590852DB-7DF7-45E0-A325-65B276B4A171}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{FDE81773-682B-4D48-A905-7BBE0EADCD12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDE81773-682B-4D48-A905-7BBE0EADCD12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDE81773-682B-4D48-A905-7BBE0EADCD12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FC9398A-BFD4-46A0-8867-AA78F2556CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC9398A-BFD4-46A0-8867-AA78F2556CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC9398A-BFD4-46A0-8867-AA78F2556CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC9398A-BFD4-46A0-8867-AA78F2556CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{590852DB-7DF7-45E0-A325-65B276B4A171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{590852DB-7DF7-45E0-A325-65B276B4A171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{590852DB-7DF7-45E0-A325-65B276B4A171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{590852DB-7DF7-45E0-A325-65B276B4A171}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
