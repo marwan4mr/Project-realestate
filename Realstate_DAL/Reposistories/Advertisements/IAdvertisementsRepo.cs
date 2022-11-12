@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Realstate_DAL
 {
-    internal interface IAdvertisementsRepo:IGenericRepo<Advertisement>
+    public interface IAdvertisementsRepo:IGenericRepo<Advertisement>
     {
         List<Advertisement> GetAdsByUserId(int userId); 
         List<Advertisement> GetAdsByCompanyId(int companyId);

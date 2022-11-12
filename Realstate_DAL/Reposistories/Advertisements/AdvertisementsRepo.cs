@@ -40,5 +40,7 @@ namespace Realstate_DAL
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

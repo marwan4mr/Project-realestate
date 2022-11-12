@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using realestate_DAL;
+using Realstate_BL;
+using Realstate_DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,17 @@ builder.Services.AddDbContext<RealstateContext>(options => options.UseSqlServer(
 
 #endregion
 
+#region Repos
+builder.Services.AddScoped<IAdvertisementsRepo,AdvertisementsRepo>();
+#endregion
+
+#region AutoMapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+#endregion
+
+#region Managers
+builder.Services.AddScoped<IAdvManager, AdvManager>();
+#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
