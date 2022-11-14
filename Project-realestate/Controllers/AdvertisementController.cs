@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Realstate_BL;
 using Realstate_BL.DTOs.Advertiaement;
 
 namespace Project_realestate.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AdvertisementController : ControllerBase
