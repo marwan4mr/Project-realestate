@@ -1,11 +1,61 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using realestate_DAL;
 using Realstate_BL;
 using Realstate_DAL;
+using System.Security.Claims;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.KD
+
+#region Identity
+
+builder.Services.AddIdentity<UserClass, IdentityRole>(options =>
+    {
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireDigit = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequiredLength = 6;
+
+        options.User.RequireUniqueEmail = true;
+
+        options.Lockout.MaxFailedAccessAttempts = 3;
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
+    })
+    .AddEntityFrameworkStores<RealstateContext>();
+
+#endregion
+
+#region Authontication
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "Jwt";
+    options.DefaultChallengeScheme = "Jwt";
+}).AddJwtBearer("Jwt", option =>
+{
+    var GetKey = builder.Configuration.GetValue<string>("SecretKey");
+    var KeyOutBytes = Encoding.ASCII.GetBytes(GetKey);
+    var SecretKey = new SymmetricSecurityKey(KeyOutBytes);
+
+    option.TokenValidationParameters = new TokenValidationParameters
+    {
+        IssuerSigningKey = SecretKey,
+        ValidateAudience = false,
+        ValidateIssuer = false,
+    };
+});
+
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy("Admin", opt => opt.RequireClaim(ClaimTypes.Role, "Admin"));
+});
+#endregion
+
 #region services
 #region Defaults
 
@@ -48,6 +98,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
