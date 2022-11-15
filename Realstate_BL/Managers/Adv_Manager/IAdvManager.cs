@@ -17,9 +17,7 @@ namespace Realstate_BL
         void UpdateAdvertisement(AdvWriteDTO ad);
         List<AdvReadDTO> GetAdsByUserId(int userId);
         List<AdvReadDTO> GetAdsByCompanyId(int companyId);
-        List<AdvReadDTO> GetAdsByCity(string City);
-        List<AdvReadDTO> GetAdsByDate(DateTime date);
-        List<AdvReadDTO> GetAdsByType(string type);
-
+        List<AdvReadDTO> GetFiltered(string? type,string? City,int? noOfRooms);
+        
     }
 }

@@ -40,24 +40,13 @@ namespace Project_realestate.Controllers
 
         }
 
-        [HttpGet]
-        [Route("{city}")]
-        public ActionResult<IEnumerable<AdvReadDTO>> GetAdByCity(string city)
-        {
-            var advDTO = _advManager.GetAdsByCity(city);
-            if (advDTO == null)
-                return NotFound();
-            return advDTO;
-        }
+      
 
         [HttpGet]
-        [Route("{type}")]
-        public ActionResult<IEnumerable<AdvReadDTO>> GetAdByType(string type)
+        public ActionResult<IEnumerable<AdvReadDTO>> GetFiltered(string? type,string? city,int noOfRooms)
         {
-            var advDTO = _advManager.GetAdsByType(type);
-            if (advDTO == null)
-                return NotFound();
-            return advDTO;
+            return _advManager.GetFiltered(type, city, noOfRooms);
+          
         }
 
         [HttpDelete]

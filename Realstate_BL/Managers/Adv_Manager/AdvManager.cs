@@ -36,29 +36,11 @@ namespace Realstate_BL
 
         }
 
-        public List<AdvReadDTO> GetAdsByCity(string City)
-        {
-            var dbAD=_AdvRepo.GetAdsByCity(City);
-
-             return _mapper.Map<List<AdvReadDTO>>(dbAD);
-        }
-
         public List<AdvReadDTO> GetAdsByCompanyId(int companyId)
         {
             throw new NotImplementedException();
         }
 
-        public List<AdvReadDTO> GetAdsByDate(DateTime date)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<AdvReadDTO> GetAdsByType(string type)
-        {
-            var dbAD = _AdvRepo.GetAdsByType(type); 
-
-            return _mapper.Map<List<AdvReadDTO>>(dbAD);
-        }
 
         public List<AdvReadDTO> GetAdsByUserId(int userId)
         {
@@ -79,6 +61,13 @@ namespace Realstate_BL
             var dbAds = _AdvRepo.GetAll();
             var DTOAds= _mapper.Map<List<AdvReadDTO>>(dbAds);
             return DTOAds;
+        }
+
+        public List<AdvReadDTO> GetFiltered(string? type, string? City, int? noOfRooms)
+        {
+            var dbAD = _AdvRepo.GetFiltered(type, City, noOfRooms);
+
+            return _mapper.Map<List<AdvReadDTO>>(dbAD);
         }
 
         public void UpdateAdvertisement(AdvWriteDTO ad)

@@ -11,8 +11,6 @@ namespace Realstate_DAL
     {
         List<Advertisement> GetAdsByUserId(int userId); 
         List<Advertisement> GetAdsByCompanyId(int companyId);
-        List<Advertisement> GetAdsByCity(string City);
-        List<Advertisement> GetAdsByDate(DateTime date);
-        List<Advertisement> GetAdsByType(string type);
+        List<Advertisement> GetFiltered(string? type,string? city,int? noOfRooms);
     }
 }

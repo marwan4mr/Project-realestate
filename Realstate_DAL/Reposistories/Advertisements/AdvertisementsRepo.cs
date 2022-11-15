@@ -16,24 +16,9 @@ namespace Realstate_DAL
             _Context = context;
         }
         
-        public List<Advertisement> GetAdsByCity(string City)
-        {
-            return _Context.Advertisements.Where(a => a.City == City).ToList(); 
-        }
-
         public List<Advertisement> GetAdsByCompanyId(int companyId)
         {
             throw new NotImplementedException();
-        }
-
-        public List<Advertisement> GetAdsByDate(DateTime date)
-        {
-            return _Context.Advertisements.Where(a => a.AdvDate==date).ToList();
-        }
-
-        public List<Advertisement> GetAdsByType(string type)
-        {
-            return _Context.Advertisements.Where(a => a.Type==type).ToList();
         }
 
         public List<Advertisement> GetAdsByUserId(int userId)
@@ -41,6 +26,13 @@ namespace Realstate_DAL
             throw new NotImplementedException();
         }
 
-       
+        public List<Advertisement> GetFiltered(string? type, string? city, int? noOfRooms)
+        {
+            return _Context.Advertisements
+                .Where(a => type == null || type == a.Type)
+                .Where(a =>city==null||city==a.City)
+                .Where(a=>noOfRooms==null||noOfRooms==a.No_Of_Rooms).ToList();         
+
+        }
     }
 }
