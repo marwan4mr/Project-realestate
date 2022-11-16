@@ -43,6 +43,7 @@ namespace Project_realestate.Controllers
       
 
         [HttpGet]
+        [Route("{filter}")]
         public ActionResult<IEnumerable<AdvReadDTO>> GetFiltered(string? type,string? city,int noOfRooms)
         {
             return _advManager.GetFiltered(type, city, noOfRooms);
