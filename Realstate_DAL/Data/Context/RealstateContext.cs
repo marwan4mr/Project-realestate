@@ -1,26 +1,28 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Project_realestate.Data.Models;
-using Realstate_DAL;
 
-namespace realestate_DAL
+
+
+namespace Realstate_DAL;
+
+public class RealstateContext : IdentityDbContext
 {
-    public class RealstateContext:IdentityDbContext
+
+    #region tables
+    public DbSet<Advertisement> Advertisements { get; set; } = null!;
+    public DbSet<UserClass> UserClasses { get; set; } = null!;
+    public DbSet<Company> Companies { get; set; } = null!;
+    #endregion
+
+    public RealstateContext(DbContextOptions<RealstateContext> options) : base(options)
     {
 
-        #region tables
-        public DbSet<Advertisement> Advertisements { get; set; } 
-        public DbSet<UserClass> userClasses { get; set; }
-        #endregion
+    }
 
-        public RealstateContext(DbContextOptions<RealstateContext> options):base(options)
-        {
-          
-        }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-        }
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
     }
 }

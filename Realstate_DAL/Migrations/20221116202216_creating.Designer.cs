@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Realstate_DAL;
 
@@ -11,9 +12,10 @@ using Realstate_DAL;
 namespace Realstate_DAL.Migrations
 {
     [DbContext(typeof(RealstateContext))]
-    partial class RealstateContextModelSnapshot : ModelSnapshot
+    [Migration("20221116202216_creating")]
+    partial class creating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

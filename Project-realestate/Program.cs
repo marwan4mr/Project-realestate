@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using realestate_DAL;
 using Realstate_BL;
 using Realstate_DAL;
 using System.Security.Claims;
@@ -10,6 +9,19 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.KD
+
+
+#region Cors
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin();
+        builder.AllowAnyMethod();
+        builder.WithHeaders();
+    });
+});
+#endregion
 
 #region Identity
 
@@ -76,6 +88,8 @@ builder.Services.AddDbContext<RealstateContext>(options => options.UseSqlServer(
 
 #region Repos
 builder.Services.AddScoped<IAdvertisementsRepo,AdvertisementsRepo>();
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<ICompanyRepo, CompanyRepo>();
 #endregion
 
 #region AutoMapper
@@ -84,6 +98,8 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
 #region Managers
 builder.Services.AddScoped<IAdvManager, AdvManager>();
+builder.Services.AddScoped<ICompanyManager, CompanyManager>();
+builder.Services.AddScoped<IUserManager, UserManager>();
 #endregion
 var app = builder.Build();
 
@@ -95,7 +111,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

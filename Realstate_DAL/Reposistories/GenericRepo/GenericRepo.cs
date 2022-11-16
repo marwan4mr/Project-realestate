@@ -1,9 +1,4 @@
-﻿using realestate_DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Realstate_DAL
 { 
@@ -19,7 +14,7 @@ namespace Realstate_DAL
         {
             return _context.Set<T>().ToList();
         }
-        public T? GetById(int id)
+        public T? GetById(Guid id)
         {
             return _context.Set<T>().Find(id);
         }

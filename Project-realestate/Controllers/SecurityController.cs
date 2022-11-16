@@ -98,12 +98,12 @@ namespace Project_realestate.Controllers
             var JsonWebToken = new JwtSecurityToken
                 (
                 claims:UserClaim,
-                expires:DateTime.Now.AddMinutes(15),
+                expires: DateTime.Now.AddHours(8),
                 notBefore:DateTime.Now,
                 signingCredentials:SigningCredential
                 );
 
-
+            
 
             var JsonWebTokenHandler = new JwtSecurityTokenHandler();
 

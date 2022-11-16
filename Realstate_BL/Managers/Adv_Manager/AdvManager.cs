@@ -36,18 +36,18 @@ namespace Realstate_BL
 
         }
 
-        public List<AdvReadDTO> GetAdsByCompanyId(int companyId)
+        public List<AdvReadDTO> GetAdsByCompanyId(Guid companyId)
         {
             throw new NotImplementedException();
         }
 
 
-        public List<AdvReadDTO> GetAdsByUserId(int userId)
+        public List<AdvReadDTO> GetAdsByUserId(Guid userId)
         {
             throw new NotImplementedException();
         }
 
-        public AdvReadDTO? GetAdvById(int id)
+        public AdvReadDTO? GetAdvById(Guid id)
         {
             var dbAdv = _AdvRepo.GetById(id);
             if(dbAdv is null)

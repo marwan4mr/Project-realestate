@@ -25,7 +25,7 @@ namespace Project_realestate.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult<AdvReadDTO> GetAdById(int id)
+        public ActionResult<AdvReadDTO> GetAdById(Guid id)
         {
             var advDTO= _advManager.GetAdvById(id);
             if(advDTO == null)   
