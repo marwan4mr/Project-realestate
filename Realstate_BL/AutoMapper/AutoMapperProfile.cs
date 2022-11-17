@@ -13,7 +13,7 @@ namespace Realstate_BL
             CreateMap<Advertisement, AdvReadDTO>(); 
             CreateMap<AdvWriteDTO, Advertisement>();
 
-            CreateMap<Company, CompanyReadDTO>().ForMember(c => c.UsersInCompany, m => m.MapFrom(c => c.Users));
+            CreateMap<Company, CompanyReadDTO>().ForMember(c => c.UsersInCompany, m => m.MapFrom(c => c.CompaniesUsers));
             CreateMap<CompanyWriteDTO, Company>();
 
             CreateMap<UserClass, UserReadDTO>();
@@ -21,6 +21,8 @@ namespace Realstate_BL
 
             CreateMap<UserClass, UserCompanyReadDTO>();
             CreateMap<Company, CompanyUsersReadDTO>();
+
+            CreateMap<CompanyUser, UserCompanyReadDTO>().IncludeMembers(c=>c.UserClass);
         }
     }
 }

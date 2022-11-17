@@ -18,10 +18,7 @@ namespace Realstate_DAL
         {
             return _context.Set<T>().Find(id);
         }
-        public void Add(T entity)
-        {
-            _context.Set<T>().Add(entity);
-        }
+ 
 
         public void Delete(T entity)
         {

@@ -1,5 +1,7 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Realstate_BL;
 
@@ -7,24 +9,28 @@ namespace GraduationProjectITI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class CompanyController : ControllerBase
     {
         private readonly ICompanyManager _companyManager;
+        private readonly UserManager<UserClass> _userManager;
 
-        public CompanyController(ICompanyManager companyManager)
+        public CompanyController(ICompanyManager companyManager, UserManager<UserClass> userManager)
         {
             _companyManager = companyManager;
+            _userManager = userManager;
         }
         /*******************************************************  GET: api/Companies  ********************************************/
         [HttpGet]
-        public ActionResult<IEnumerable<CompanyReadDTO>> GetDoctors()
+        public ActionResult<IEnumerable<CompanyReadDTO>> GetCompany()
         {
+            
             return _companyManager.GetAllCompanies();
         }
         /*******************************************************  GET: api/Company/id  ********************************************/
         [HttpGet]
         [Route("{id:Guid}")]
-        public ActionResult<CompanyReadDTO> GetDoctor(Guid id)
+        public ActionResult<CompanyReadDTO> GetCompany(Guid id)
         {
             var companyDTO = _companyManager.GetCompanyById(id);
 
@@ -48,9 +54,12 @@ namespace GraduationProjectITI.Controllers
         }
         /*******************************************************  Post: api/Company  ********************************************/
         [HttpPost]
-        public ActionResult<UserReadDTO> PostCompany(CompanyWriteDTO Company)
+        [Authorize]
+        public async Task<ActionResult<UserReadDTO>> PostCompany(CompanyWriteDTO Company)
         {
-            var CompanyDTO = _companyManager.AddCompany(Company);
+           
+            var user = await _userManager.GetUserAsync(User);
+            var CompanyDTO = _companyManager.AddCompany(Company, user);
 
             return CreatedAtAction("GetCompany", new { id = CompanyDTO.CompanyId }, CompanyDTO);
         }

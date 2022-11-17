@@ -7,7 +7,7 @@ public class Company
     public string? CompanyImage { get; set; } = "";
     public string Companylocation { get; set; } = "";
     public int CompanyPhoneNumber { get; set; }
-    public ICollection<UserClass> Users { get; set; } = new HashSet<UserClass>();
+    public ICollection<CompanyUser> CompaniesUsers { get; set; } = new HashSet<CompanyUser>();
 
 
 }

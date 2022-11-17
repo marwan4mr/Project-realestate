@@ -23,7 +23,7 @@ namespace Realstate_BL
         public void AddAdvertisement(AdvWriteDTO ad)
         {
            var dbAd= _mapper.Map<Advertisement>(ad);
-            _AdvRepo.Add(dbAd);
+         //   _AdvRepo.Add(dbAd);
             _AdvRepo.SaveChanges();
                 
         }

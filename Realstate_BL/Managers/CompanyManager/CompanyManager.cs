@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Realstate_BL;
 using Realstate_DAL;
 
@@ -8,12 +7,14 @@ public class CompanyManager : ICompanyManager
 
     private readonly ICompanyRepo _companyRepo;
     private readonly IMapper _mapper;
+    //private readonly UserManager _userManager;
 
-    public CompanyManager(ICompanyRepo companyRepo , IMapper mapper) 
+    public CompanyManager(ICompanyRepo companyRepo, IMapper mapper )
     {
-   
+
         _companyRepo = companyRepo;
         _mapper = mapper;
+        //_userManager = userManager;
     }
     public List<CompanyReadDTO> GetAllCompanies()
     {
@@ -25,26 +26,35 @@ public class CompanyManager : ICompanyManager
     {
         var DatabaseCompany = _companyRepo.GetById(id);
         if (DatabaseCompany == null)
-            return null; 
+            return null;
         return _mapper.Map<CompanyReadDTO>(DatabaseCompany);
-     
+
     }
-    public CompanyReadDTO AddCompany(CompanyWriteDTO companyDTO)
+
+    public CompanyReadDTO AddCompany(CompanyWriteDTO companyDTO, UserClass user)
     {
+
         var CompanyDB = _mapper.Map<Company>(companyDTO);
-
-        CompanyDB.CompanyId = new Guid();
-
+        CompanyDB.CompaniesUsers = new List<CompanyUser>
+        {
+           new CompanyUser
+            {
+                IsAdmin = true,
+                JoinDate = DateTime.Now,
+                UserID = user.Id
+            }
+        };
+       
         _companyRepo.Add(CompanyDB);
         _companyRepo.SaveChanges();
 
-        return _mapper.Map<CompanyReadDTO>(CompanyDB) ;
+        return _mapper.Map<CompanyReadDTO>(CompanyDB);
     }
     public bool EditCompany(CompanyWriteDTO companyDTO)
     {
         var dbCompany = _companyRepo.GetById(companyDTO.CompanyId);
 
-        if(dbCompany==null)
+        if (dbCompany == null)
             return false;
 
         _mapper.Map(dbCompany, companyDTO);
@@ -72,3 +82,24 @@ public class CompanyManager : ICompanyManager
     }
 
 }
+////User.Claims.Where(a=>a.Type == NameIdentitfier);
+//CompanyDB.CompanyId = new Guid();
+//CompanyUser user = new CompanyUser();
+////user.UserID = userId;
+//user.CompanyID = CompanyDB.CompanyId;
+//user.IsAdmin = true;
+
+
+//    CompanyDB.Users = new List<CompanyUser>
+//{
+//    new CompanyUser
+//    {
+//        IsAdmin= true,
+//    }
+//};
+
+//new CompanyUser
+//{
+//    IsAdmin = true,
+//    JoinDate = joinDate,
+//};

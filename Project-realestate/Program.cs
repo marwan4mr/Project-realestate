@@ -25,7 +25,7 @@ builder.Services.AddCors(option =>
 
 #region Identity
 
-builder.Services.AddIdentity<UserClass, IdentityRole>(options =>
+builder.Services.AddIdentity<UserClass, IdentityRole<Guid>>(options =>
     {
         options.Password.RequireNonAlphanumeric = false;
         options.Password.RequireDigit = false;

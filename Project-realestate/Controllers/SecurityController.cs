@@ -44,7 +44,7 @@ namespace Project_realestate.Controllers
             //Saving claims
             var UserClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier,DAL_User.Id)
+                new Claim(ClaimTypes.NameIdentifier,DAL_User.Id.ToString())
             };
 
             //Adding the claims to user

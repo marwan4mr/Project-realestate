@@ -14,9 +14,14 @@ public class UserRepo : GenericRepo<UserClass> , IUserRepo
         _context = context;
     }
 
+    public void Add(UserClass user)
+    {
+        _context.Add(user);
+    }
+
     public List<UserClass> GetUsersWithCompany()
     {
-        return _context.UserClasses.Include(p => p.Companies).ToList();
+        return _context.Users.Include(p => p.CompaniesUsers).ToList();
       
     }
 

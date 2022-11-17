@@ -13,9 +13,16 @@ public class CompanyRepo : GenericRepo<Company>, ICompanyRepo
         _context = context;
     }
 
+    public void Add(/*Guid userId, */Company company)
+    {
+       
+      
+        _context.Add(company);
+    }
+
     public List<Company> GetAllUsersOfCompany()
     {
-        return _context.Companies.Include(c => c.Users).ToList();
+        return _context.Companies.Include(c => c.CompaniesUsers).ThenInclude(c=>c.UserClass).ToList();
     }
      
  

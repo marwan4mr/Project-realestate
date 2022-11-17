@@ -34,7 +34,7 @@ public class UserManager : IUserManager
     public UserReadDTO AddUser(UserWriteDTO userDTO)
     {
        var userdb = _mapper.Map<UserClass>(userDTO);
-        userdb.UserId = new Guid();
+        userdb.Id = Guid.NewGuid();
         _userRepo.Add(userdb);
         _userRepo.SaveChanges();
         return _mapper.Map<UserReadDTO>(userdb);
