@@ -1,4 +1,6 @@
-﻿namespace Project_realestate.Data.Models
+﻿using Realstate_DAL;
+
+namespace Project_realestate.Data.Models
 {
     public class Advertisement
     {
@@ -14,6 +16,8 @@
         public bool IsFurnished { get; set; }
         public string ImgUrl { get; set; } = "";
         public DateTime? AdvDate { get; set; }
+
+
 
     }
 }

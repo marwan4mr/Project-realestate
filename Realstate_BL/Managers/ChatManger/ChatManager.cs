@@ -23,6 +23,7 @@ namespace Realstate_BL
         public void AddChat(ChatWriteDTO chat)
         {
             var dbChat = _mapper.Map<Chat>(chat);
+            dbChat.IsSeen = false;
             _chatRepo.Add(dbChat);
             _chatRepo.SaveChanges();
         }
@@ -60,7 +61,7 @@ namespace Realstate_BL
         public List<ChatReadDTO> GetLastChat(Guid senderId)
         {
             var dbChats = _chatRepo.GetLastChat( senderId);
-            return _mapper.Map<List<ChatReadDTO>>(dbChats);
+            return _mapper.Map<List<ChatReadDTO>>(dbChats); //error here
         }
 
 

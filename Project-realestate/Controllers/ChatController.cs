@@ -5,7 +5,7 @@ using Realstate_DAL;
 
 namespace Project_realestate.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ChatController : ControllerBase
@@ -18,16 +18,16 @@ namespace Project_realestate.Controllers
         }   
 
         [HttpGet]
-        [Route("{ViewLastChats}")]
-        public ActionResult<List <ChatReadDTO>> ViewLastChats(Guid id)
+        [Route("ViewLastChatsByForMe")]
+        public ActionResult<List <ChatReadDTO>> ViewLastChats(Guid reciverId)
         {
-            var chatDTO = _chatManager.GetLastChat(id);
+            var chatDTO = _chatManager.GetLastChat(reciverId);
             if(chatDTO == null) return NotFound();
             return chatDTO;
         }
 
         [HttpGet]
-        [Route("{GetChatDetails}")]
+        [Route("GetChatDetails")]
         public ActionResult <List<ChatReadDTO>> GetChatDetails(Guid senderId, Guid reciverId)
         {
            return _chatManager.GetChatBySenderAndReciver( senderId,  reciverId);

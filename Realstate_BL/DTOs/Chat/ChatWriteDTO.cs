@@ -7,4 +7,6 @@ public class ChatWriteDTO
     public bool IsSeen { get; set; } = false;
     public DateTime SentDate { get; set; }
 
+    public Guid SenderId { get; set; }
+    public Guid ReciverId { get; set; }
 }

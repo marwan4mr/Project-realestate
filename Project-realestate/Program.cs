@@ -101,6 +101,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 builder.Services.AddScoped<IAdvManager, AdvManager>();
 builder.Services.AddScoped<ICompanyManager, CompanyManager>();
 builder.Services.AddScoped<IUserManager, UserManager>();
+builder.Services.AddScoped<IChatManager, ChatManager>();
 #endregion
 var app = builder.Build();
 
