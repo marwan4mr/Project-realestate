@@ -87,9 +87,10 @@ builder.Services.AddDbContext<RealstateContext>(options => options.UseSqlServer(
 #endregion
 
 #region Repos
-builder.Services.AddScoped<IAdvertisementsRepo,AdvertisementsRepo>();
+builder.Services.AddScoped<IAdvertisementsRepo, AdvertisementsRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<ICompanyRepo, CompanyRepo>();
+builder.Services.AddScoped<IChatRepo, ChatRepo>();
 #endregion
 
 #region AutoMapper

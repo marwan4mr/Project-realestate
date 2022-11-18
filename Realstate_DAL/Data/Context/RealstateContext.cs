@@ -14,8 +14,13 @@ public class RealstateContext : IdentityDbContext<UserClass, IdentityRole<Guid> 
     #region tables
     public DbSet<Advertisement> Advertisements { get; set; } = null!;
     public DbSet<Company> Companies { get; set; } = null!;
+<<<<<<< Updated upstream
     public DbSet<CompanyUser> CompanyUsers { get; set; } = null!;
    
+=======
+
+    public DbSet<Chat> Chat { get; set; } = null!;
+>>>>>>> Stashed changes
     #endregion
 
     public RealstateContext(DbContextOptions<RealstateContext> options) : base(options)
