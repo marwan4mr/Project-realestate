@@ -14,7 +14,7 @@ public class ChatRepo : GenericRepo<Chat>, IChatRepo
 
     public List<Chat> GetChatBySenderAndReciver(Guid senderId , Guid reciverId)
     {
-        return _context.Chat
+        return _context.Chats
             .Where(a => (senderId == a.SenderId && a.ReciverId==reciverId) 
             ||  (reciverId == a.SenderId && a.ReciverId==senderId))
             .ToList();
@@ -22,7 +22,7 @@ public class ChatRepo : GenericRepo<Chat>, IChatRepo
 
     public List<Chat> GetLastChat(Guid senderId)
     {
-        return _context.Chat.Where(a => a.ReciverId == senderId)
+        return _context.Chats.Where(a => a.ReciverId == senderId)
             .GroupBy(a=>a.SenderId)
             .Select(a=> a.OrderByDescending(c=>c.SentDate).First())
             .ToList();

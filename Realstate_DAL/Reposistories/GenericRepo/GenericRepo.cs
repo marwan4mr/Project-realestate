@@ -10,6 +10,11 @@ namespace Realstate_DAL
         {
             _context = context;
         }
+
+        public void Add(T entity)
+        {
+            _context.Set<T>().Add(entity);
+        }
         public List<T> GetAll()
         {
             return _context.Set<T>().ToList();

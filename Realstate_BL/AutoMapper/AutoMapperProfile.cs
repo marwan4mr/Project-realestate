@@ -22,12 +22,12 @@ namespace Realstate_BL
             CreateMap<UserClass, UserCompanyReadDTO>();
             CreateMap<Company, CompanyUsersReadDTO>();
 
-<<<<<<< Updated upstream
+
             CreateMap<CompanyUser, UserCompanyReadDTO>().IncludeMembers(c=>c.UserClass);
-=======
+
             CreateMap<Chat, ChatReadDTO>();
             CreateMap<ChatWriteDTO, Chat>();
->>>>>>> Stashed changes
+
         }
     }
 }
