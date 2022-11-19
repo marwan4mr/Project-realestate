@@ -16,14 +16,14 @@ namespace GraduationProjectITI.Controllers
         }
         /*******************************************************  GET: api/Users  ********************************************/
         [HttpGet]
-        public ActionResult<IEnumerable<UserReadDTO>> GetDoctors()
+        public ActionResult<IEnumerable<UserReadDTO>> GetUsers()
         {
             return _userManager.GetAllUsers();
         }
         /*******************************************************  GET: api/User/id  ********************************************/
         [HttpGet]
         [Route("{id:Guid}")]
-        public ActionResult<UserReadDTO> GetDoctor(Guid id)
+        public ActionResult<UserReadDTO> GetUser(Guid id)
         {
             var userDTO = _userManager.GetUserById(id);
 
@@ -47,15 +47,15 @@ namespace GraduationProjectITI.Controllers
         }
         /*******************************************************  Put: api/Users  ********************************************/
         [HttpPost]
-        public ActionResult<UserReadDTO> PostDoctor(UserWriteDTO userDTO)
+        public ActionResult<UserReadDTO> PostUser(UserWriteDTO userDTO)
         {
             var UserReadDTO = _userManager.AddUser(userDTO);
 
-            return CreatedAtAction("GetDoctor", new { id = UserReadDTO }, UserReadDTO);
+            return CreatedAtAction("GetUser", new { id = UserReadDTO }, UserReadDTO);
         }
         /*******************************************************  Delete: api/Users  ********************************************/
         [HttpDelete("{id}")]
-        public ActionResult DeleteDoctor(Guid id)
+        public ActionResult DeleteUser(Guid id)
         {
             _userManager.DeleteUser(id);
             return NoContent();

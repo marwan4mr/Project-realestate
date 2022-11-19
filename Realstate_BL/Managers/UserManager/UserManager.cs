@@ -16,10 +16,14 @@ public class UserManager : IUserManager
 
     public List<UserReadDTO> GetAllUsers()
     {
-        var usersDB = _userRepo.GetAll().ToList();
+        var usersDB = _userRepo.GetAll();
         var usersDTO = _mapper.Map<List<UserReadDTO>>(usersDB);
 
         return usersDTO;
+
+        //var DbCompany = _companyRepo.GetAll();
+        //var DTOList = _mapper.Map<List<CompanyReadDTO>>(DbCompany);
+        //return DTOList;
     }
     public UserReadDTO? GetUserById(Guid id)
     {
@@ -44,7 +48,7 @@ public class UserManager : IUserManager
         var userDb = _userRepo.GetById(userDTO.UserId);
         if(userDb==null)
             return false;
-        _mapper.Map(userDb, userDTO);
+        _mapper.Map(userDTO, userDb);
         _userRepo.Update(userDb);
         _userRepo.SaveChanges();
         return true;

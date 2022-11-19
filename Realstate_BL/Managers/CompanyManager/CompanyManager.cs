@@ -57,7 +57,7 @@ public class CompanyManager : ICompanyManager
         if (dbCompany == null)
             return false;
 
-        _mapper.Map(dbCompany, companyDTO);
+        _mapper.Map(companyDTO,dbCompany);
 
         _companyRepo.Update(dbCompany);
         _companyRepo.SaveChanges();
