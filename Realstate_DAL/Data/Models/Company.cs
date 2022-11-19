@@ -8,6 +8,7 @@ public class Company
     public string Companylocation { get; set; } = "";
     public int CompanyPhoneNumber { get; set; }
     public ICollection<CompanyUser> CompaniesUsers { get; set; } = new HashSet<CompanyUser>();
+    public ICollection<Advertisement> advertisements { get; set; } = new HashSet<Advertisement>();
 
 
 }

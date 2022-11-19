@@ -67,6 +67,8 @@ namespace GraduationProjectITI.Controllers
         {
             return _userManager.GetAllUsersInCompany();
         }
+         
+
 
     }
 }

@@ -12,4 +12,6 @@ public class UserClass : IdentityUser<Guid>
 
     [InverseProperty("Reciver")]
     public ICollection<Chat> ReceivedChats { get; set; } = new HashSet<Chat>();
+    public ICollection<Advertisement> advertisements { get; set; } = new HashSet<Advertisement>();
+
 }
