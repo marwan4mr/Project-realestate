@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Project_realestate.Data.Models;
-using Realstate_BL.DTOs.Advertiaement;
+using Realstate_BL;
 using Realstate_DAL;
 
 
@@ -22,6 +21,7 @@ namespace Realstate_BL
 
             CreateMap<UserClass, UserCompanyReadDTO>();
             CreateMap<Company, CompanyUsersReadDTO>();
+         
 
 
             CreateMap<CompanyUser, UserCompanyReadDTO>()

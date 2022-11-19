@@ -5,7 +5,7 @@ using Realstate_DAL;
 
 namespace Project_realestate.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class ChatController : ControllerBase

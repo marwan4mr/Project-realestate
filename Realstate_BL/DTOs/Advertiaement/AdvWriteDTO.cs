@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Realstate_BL.DTOs.Advertiaement
+namespace Realstate_BL
 {
     public class AdvWriteDTO
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Description { get; set; } = "";
         public decimal Price { get; set; }
         public string Type { get; set; } = "";

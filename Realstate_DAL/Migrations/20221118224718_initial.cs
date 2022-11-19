@@ -5,32 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Realstate_DAL.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Advertisements",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Place = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    No_Of_Rooms = table.Column<int>(type: "int", nullable: false),
-                    No_Of_Bathrooms = table.Column<int>(type: "int", nullable: false),
-                    Floor_Number = table.Column<int>(type: "int", nullable: false),
-                    IsFurnished = table.Column<bool>(type: "bit", nullable: false),
-                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdvDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Advertisements", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -103,6 +81,42 @@ namespace Realstate_DAL.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Advertisements",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    No_Of_Rooms = table.Column<int>(type: "int", nullable: false),
+                    No_Of_Bathrooms = table.Column<int>(type: "int", nullable: false),
+                    Floor_Number = table.Column<int>(type: "int", nullable: false),
+                    IsFurnished = table.Column<bool>(type: "bit", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Company_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    user_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AdvDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Advertisements", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Advertisements_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "CompanyId");
+                    table.ForeignKey(
+                        name: "FK_Advertisements_Users_user_Id",
+                        column: x => x.user_Id,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -243,6 +257,16 @@ namespace Realstate_DAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Advertisements_CompanyId",
+                table: "Advertisements",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Advertisements_user_Id",
+                table: "Advertisements",
+                column: "user_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

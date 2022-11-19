@@ -1,10 +1,4 @@
-﻿using Project_realestate.Data.Models;
-using Realstate_BL.DTOs.Advertiaement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Realstate_BL;
 
 namespace Realstate_BL
 {

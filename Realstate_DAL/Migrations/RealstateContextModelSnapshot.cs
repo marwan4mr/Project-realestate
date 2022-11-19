@@ -153,7 +153,7 @@ namespace Realstate_DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Project_realestate.Data.Models.Advertisement", b =>
+            modelBuilder.Entity("Realstate_DAL.Advertisement", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,6 +165,12 @@ namespace Realstate_DAL.Migrations
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Company_Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -180,15 +186,15 @@ namespace Realstate_DAL.Migrations
                     b.Property<bool>("IsFurnished")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("No_Of_Bathrooms")
                         .HasColumnType("int");
 
                     b.Property<int>("No_Of_Rooms")
                         .HasColumnType("int");
-
-                    b.Property<string>("Place")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -197,7 +203,14 @@ namespace Realstate_DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("user_Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("user_Id");
 
                     b.ToTable("Advertisements");
                 });
@@ -399,6 +412,23 @@ namespace Realstate_DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Realstate_DAL.Advertisement", b =>
+                {
+                    b.HasOne("Realstate_DAL.Company", "company")
+                        .WithMany("advertisements")
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("UserClass", "UserClass")
+                        .WithMany("advertisements")
+                        .HasForeignKey("user_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserClass");
+
+                    b.Navigation("company");
+                });
+
             modelBuilder.Entity("Realstate_DAL.Chat", b =>
                 {
                     b.HasOne("UserClass", "Reciver")
@@ -436,6 +466,8 @@ namespace Realstate_DAL.Migrations
             modelBuilder.Entity("Realstate_DAL.Company", b =>
                 {
                     b.Navigation("CompaniesUsers");
+
+                    b.Navigation("advertisements");
                 });
 
             modelBuilder.Entity("UserClass", b =>
@@ -445,6 +477,8 @@ namespace Realstate_DAL.Migrations
                     b.Navigation("ReceivedChats");
 
                     b.Navigation("SentChats");
+
+                    b.Navigation("advertisements");
                 });
 #pragma warning restore 612, 618
         }

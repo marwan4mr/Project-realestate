@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
-using Project_realestate.Data.Models;
-using Realstate_BL.DTOs.Advertiaement;
+using Realstate_BL;
 using Realstate_DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Realstate_BL
 {
@@ -38,13 +32,19 @@ namespace Realstate_BL
 
         public List<AdvReadDTO> GetAdsByCompanyId(Guid companyId)
         {
-            throw new NotImplementedException();
+            var dbAdv = _AdvRepo.GetAdsByCompanyId(companyId);
+            if (dbAdv is null)
+                return null;
+            return _mapper.Map<List<AdvReadDTO>>(dbAdv);
         }
 
 
         public List<AdvReadDTO> GetAdsByUserId(Guid userId)
         {
-            throw new NotImplementedException();
+            var dbAdv=_AdvRepo.GetAdsByUserId(userId);
+            if (dbAdv is null)
+                return null;
+            return _mapper.Map<List<AdvReadDTO>>(dbAdv);
         }
 
         public AdvReadDTO? GetAdvById(Guid id)

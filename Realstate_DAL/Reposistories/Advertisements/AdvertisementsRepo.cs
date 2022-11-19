@@ -1,7 +1,4 @@
-﻿using Project_realestate.Data.Models;
-
-
-namespace Realstate_DAL
+﻿namespace Realstate_DAL
 {
     public class AdvertisementsRepo : GenericRepo<Advertisement>, IAdvertisementsRepo
     {
@@ -11,15 +8,18 @@ namespace Realstate_DAL
             _Context = context;
         }
         
-        public List<Advertisement> GetAdsByCompanyId(int companyId)
+        public List<Advertisement> GetAdsByCompanyId(Guid companyId)
         {
-            throw new NotImplementedException();
+            return _Context.Advertisements.Where(a => a.Company_Id==companyId).ToList();
         }
 
-        public List<Advertisement> GetAdsByUserId(int userId)
+  
+
+        public List<Advertisement> GetAdsByUserId(Guid userId)
         {
-            throw new NotImplementedException();
+           return _Context.Advertisements.Where(a=>a.user_Id==userId).ToList();
         }
+
 
         public List<Advertisement> GetFiltered(string? type, string? city, int? noOfRooms)
         {
