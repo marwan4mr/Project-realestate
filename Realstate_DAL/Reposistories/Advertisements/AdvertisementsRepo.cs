@@ -10,7 +10,7 @@
         
         public List<Advertisement> GetAdsByCompanyId(Guid companyId)
         {
-            return _Context.Advertisements.Where(a => a.Company_Id==companyId).ToList();
+            return _Context.Advertisements.Where(a => a.Company_Id == companyId).ToList();
         }
 
   

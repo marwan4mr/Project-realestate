@@ -67,4 +67,5 @@ public class UserManager : IUserManager
         var DBUsers = _userRepo.GetUsersWithCompany();
         return _mapper.Map<List<UserReadDTO>>(DBUsers);
     }
+
 }

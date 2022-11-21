@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Realstate_DAL.Migrations
 {
-    public partial class initial : Migration
+    public partial class initail : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -258,6 +258,32 @@ namespace Realstate_DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Ratings",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Trusted = table.Column<int>(type: "int", nullable: false),
+                    Avarage = table.Column<int>(type: "int", nullable: false),
+                    NotTrusted = table.Column<int>(type: "int", nullable: false),
+                    AddRatingId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ReciveRatingId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ratings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ratings_Users_AddRatingId",
+                        column: x => x.AddRatingId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Ratings_Users_ReciveRatingId",
+                        column: x => x.ReciveRatingId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Advertisements_CompanyId",
                 table: "Advertisements",
@@ -311,6 +337,16 @@ namespace Realstate_DAL.Migrations
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Ratings_AddRatingId",
+                table: "Ratings",
+                column: "AddRatingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ratings_ReciveRatingId",
+                table: "Ratings",
+                column: "ReciveRatingId");
+
+            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "Users",
                 column: "NormalizedEmail");
@@ -348,6 +384,9 @@ namespace Realstate_DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "CompanyUsers");
+
+            migrationBuilder.DropTable(
+                name: "Ratings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -91,6 +91,7 @@ builder.Services.AddScoped<IAdvertisementsRepo, AdvertisementsRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<ICompanyRepo, CompanyRepo>();
 builder.Services.AddScoped<IChatRepo, ChatRepo>();
+builder.Services.AddScoped<IRatingRepo, RatingRepo>();  
 #endregion
 
 #region AutoMapper
@@ -102,7 +103,9 @@ builder.Services.AddScoped<IAdvManager, AdvManager>();
 builder.Services.AddScoped<ICompanyManager, CompanyManager>();
 builder.Services.AddScoped<IUserManager, UserManager>();
 builder.Services.AddScoped<IChatManager, ChatManager>();
+builder.Services.AddScoped<IRatingManger, RatingManger>();
 #endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

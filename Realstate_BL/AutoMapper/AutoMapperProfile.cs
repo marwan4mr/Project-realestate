@@ -30,6 +30,8 @@ namespace Realstate_BL
             CreateMap<Chat, ChatReadDTO>();
             CreateMap<ChatWriteDTO, Chat>();
 
+            CreateMap<Rating,RatingReadDTOs>();
+            CreateMap<RatingWriteDTOs,Rating>();
         }
     }
 }

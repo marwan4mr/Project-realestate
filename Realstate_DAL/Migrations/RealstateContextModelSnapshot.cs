@@ -292,6 +292,36 @@ namespace Realstate_DAL.Migrations
                     b.ToTable("CompanyUsers");
                 });
 
+            modelBuilder.Entity("Realstate_DAL.Rating", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AddRatingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Avarage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NotTrusted")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ReciveRatingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Trusted")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddRatingId");
+
+                    b.HasIndex("ReciveRatingId");
+
+                    b.ToTable("Ratings");
+                });
+
             modelBuilder.Entity("UserClass", b =>
                 {
                     b.Property<Guid>("Id")
@@ -463,6 +493,21 @@ namespace Realstate_DAL.Migrations
                     b.Navigation("UserClass");
                 });
 
+            modelBuilder.Entity("Realstate_DAL.Rating", b =>
+                {
+                    b.HasOne("UserClass", "AddRating")
+                        .WithMany("SetsRating")
+                        .HasForeignKey("AddRatingId");
+
+                    b.HasOne("UserClass", "ReciveRating")
+                        .WithMany("GetsRating")
+                        .HasForeignKey("ReciveRatingId");
+
+                    b.Navigation("AddRating");
+
+                    b.Navigation("ReciveRating");
+                });
+
             modelBuilder.Entity("Realstate_DAL.Company", b =>
                 {
                     b.Navigation("CompaniesUsers");
@@ -474,9 +519,13 @@ namespace Realstate_DAL.Migrations
                 {
                     b.Navigation("CompaniesUsers");
 
+                    b.Navigation("GetsRating");
+
                     b.Navigation("ReceivedChats");
 
                     b.Navigation("SentChats");
+
+                    b.Navigation("SetsRating");
 
                     b.Navigation("advertisements");
                 });

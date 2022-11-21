@@ -34,12 +34,12 @@ namespace Realstate_BL
         {
             var dbAdv = _AdvRepo.GetAdsByCompanyId(companyId);
             if (dbAdv is null)
-                return null;
+                return null!;
             return _mapper.Map<List<AdvReadDTO>>(dbAdv);
         }
 
 
-        public List<AdvReadDTO> GetAdsByUserId(Guid userId)
+        public List<AdvReadDTO>? GetAdsByUserId(Guid userId)
         {
             var dbAdv=_AdvRepo.GetAdsByUserId(userId);
             if (dbAdv is null)

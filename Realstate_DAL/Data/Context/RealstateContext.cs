@@ -14,8 +14,7 @@ public class RealstateContext : IdentityDbContext<UserClass, IdentityRole<Guid> 
     public DbSet<Advertisement> Advertisements { get; set; } = null!;
     public DbSet<Company> Companies { get; set; } = null!;
     public DbSet<CompanyUser> CompanyUsers { get; set; } = null!;
-
-
+    public DbSet<Rating> Ratings { get; set; } = null!;
     public DbSet<Chat> Chats { get; set; } = null!;
 
     #endregion
@@ -40,5 +39,25 @@ public class RealstateContext : IdentityDbContext<UserClass, IdentityRole<Guid> 
             .HasMany(u => u.ReceivedChats)
             .WithOne(c => c.Reciver)
             .OnDelete(DeleteBehavior.ClientSetNull);
+
+        builder.Entity<UserClass>()
+            .HasMany(u => u.SetsRating)
+            .WithOne(c => c.AddRating)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+
+        builder.Entity<UserClass>()
+            .HasMany(u => u.GetsRating)
+            .WithOne(c => c.ReciveRating)
+            .OnDelete(DeleteBehavior.ClientSetNull);
+
+        //builder.Entity<Company>()
+        //   .HasMany(u => u.SetsRating)
+        //   .WithOne(c => c.AddRating)
+        //   .OnDelete(DeleteBehavior.ClientSetNull);
+
+        //builder.Entity<Company>()
+        //    .HasMany(u => u.GetsRating)
+        //    .WithOne(c => c.ReciveRating)
+        //    .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

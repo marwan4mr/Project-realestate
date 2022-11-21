@@ -53,7 +53,7 @@ namespace GraduationProjectITI.Controllers
         }
         /*******************************************************  Post: api/Company  ********************************************/
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public async Task<ActionResult<UserReadDTO>> PostCompany(CompanyWriteDTO Company)
         {
            
