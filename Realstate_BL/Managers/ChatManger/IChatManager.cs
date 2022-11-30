@@ -14,7 +14,7 @@ namespace Realstate_BL
 
         void AddChat (ChatWriteDTO chat);
 
-        public List<ChatReadDTO> GetChatBySenderAndReciver(Guid senderId, Guid reciverId);
+        List<ChatReadDTO> GetChatBySenderAndReciver(Guid senderId, Guid reciverId);
 
     }
 }

@@ -22,5 +22,18 @@ namespace Project_realestate.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route("GetRatingOfUser")]
+        public ActionResult<RatingReadDTOs> GetRatingOfUserById(Guid UserId)
+        {
+            var DbUserRating = _ratingManger.GetRatingOfUserById(UserId); 
+
+                if(DbUserRating==null)
+                return NotFound(new {Message="User doesn't exsists!"});
+
+            return DbUserRating;
+
+        }
     }
 }

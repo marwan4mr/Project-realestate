@@ -17,14 +17,15 @@ public class RatingRepo : GenericRepo<Rating>, IRatingRepo
         _context = context;
     }
 
-    //public Rating? GetCommentsOfUsers(Guid GetRatingId)
-    //{
-    //    return _context.Ratings.FirstOrDefault(a => a.ReciveRatingId == GetRatingId);
-    //}
+    
 
     public Rating? GetRating(Guid RecivedId)
     {
         return _context.Ratings.FirstOrDefault(a => a.ReciveRatingId == RecivedId);
     }
 
+    public Rating? GetRatingOfUserById(Guid UserId)
+    {
+        return _context.Ratings.FirstOrDefault(r => r.ReciveRatingId == UserId);
+    }
 }

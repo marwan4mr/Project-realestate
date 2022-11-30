@@ -5,5 +5,5 @@ namespace Realstate_BL;
 public interface IRatingManger
 {
     void AddRating (RatingWriteDTOs Rating);
-    Rating? GetRatingOfUserById(Guid GetRatingId);
+    RatingReadDTOs? GetRatingOfUserById(Guid GetRatingId);
 }

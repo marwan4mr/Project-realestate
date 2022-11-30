@@ -35,8 +35,14 @@ public class RatingManger : IRatingManger
         _ratingRepo.SaveChanges();
     }
 
-    public Rating? GetRatingOfUserById(Guid GetRatingId)
+    public RatingReadDTOs? GetRatingOfUserById(Guid UserId)
     {
-        return default;
+        var DbRating = _ratingRepo.GetRatingOfUserById(UserId);
+
+        if (DbRating is null) return null;
+
+       var UserRatingDTO = _mapper.Map<RatingReadDTOs>(DbRating);
+
+        return UserRatingDTO;
     }
 }

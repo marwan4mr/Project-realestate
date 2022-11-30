@@ -8,7 +8,7 @@ namespace Realstate_DAL;
 
 public interface IRatingRepo : IGenericRepo<Rating> 
 {
-    //Rating? GetRatingOfUsers(Guid GetRatingId);
+    Rating? GetRatingOfUserById(Guid RecivedUserId);
 
     Rating? GetRating(Guid RecivedId);
 }
