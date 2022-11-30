@@ -21,9 +21,17 @@ public class RatingManger : IRatingManger
 
     public void AddRating(RatingWriteDTOs RatingDTOs)
     {
-
-        var dbRating =_mapper.Map<Rating>(RatingDTOs);
-        _ratingRepo.Add(dbRating);
+        var DbRating = _ratingRepo.GetRating(RatingDTOs.ReciveRatingId.GetValueOrDefault());
+        if (DbRating != null)
+        {
+            _mapper.Map(RatingDTOs, DbRating);
+        }
+        else
+        {
+            var dbRating = _mapper.Map<Rating>(RatingDTOs);
+            dbRating.Id=Guid.NewGuid();
+            _ratingRepo.Add(dbRating);
+        }
         _ratingRepo.SaveChanges();
     }
 

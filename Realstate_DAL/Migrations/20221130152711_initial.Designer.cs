@@ -12,8 +12,8 @@ using Realstate_DAL;
 namespace Realstate_DAL.Migrations
 {
     [DbContext(typeof(RealstateContext))]
-    [Migration("20221121115445_initail")]
-    partial class initail
+    [Migration("20221130152711_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
